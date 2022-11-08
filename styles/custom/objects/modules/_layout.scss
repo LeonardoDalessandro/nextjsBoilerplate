@@ -1,0 +1,55 @@
+/*
+  OBJECTS => MAIN LAYOUT
+*/
+
+%layout-be-fluid{
+  width: 100%;
+}
+
+// GENERIC STYLES
+%layout-generic{
+  $p1: 10px; $p2: 10px; $p3: 10px; $p4: 10px; $p5: 10px; 
+  .o-layout__header, .o-layout__footer{
+    @include responsive-prop('padding-left', $p1, $p2, $p3, $p4, $p5);
+    @include responsive-prop('padding-right', $p1, $p2, $p3, $p4, $p5);
+  }
+}
+
+
+// CONTENT STYLES
+%layout-content-layout{
+  // TODO: verify all cases
+  $m1: 100px; $m2: 100px; $m3: 100px; $m4: 100px; $m5: 100px; 
+  @include responsive-prop('margin-bottom', $m1, $m2, $m3, $m4, $m5);
+
+  min-height: 110vh;
+}
+
+// CONTENT MAIN STYLES
+%layout-content-main-layout{
+  $s1: 1300px; 
+  $s2: 1200px; 
+  $s3: 800px; 
+  @include responsive-prop('max-width', $s1, $s2, $s3, null, null);
+
+  width: 90vw;
+}
+
+
+
+/***********
+** RENDER **
+***********/ 
+.o-layout{
+  @include extend-array("layout-", "generic");
+  
+  .o-layout__header{display: none}
+  .o-layout__content{
+    @include extend-array("layout-content-", "layout");
+
+    .o-content__main{
+      @include extend-array("layout-content-main-", "layout");
+    }
+
+  }
+}

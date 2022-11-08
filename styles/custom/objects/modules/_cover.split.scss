@@ -1,0 +1,76 @@
+/*
+  OBJECTS => SPLIT COVER
+*/
+
+// IMG LAYOUT STYLES
+%cover-img-layout{
+  object-fit: cover;
+
+  width: 100%;
+  height: 100%;
+}
+
+// TEXT LAYOUT STYLES
+%cover-text-layout{
+  $s1: 300px; $s2: 300px; $s3: 300px; $s4: $main-col-width-md-sm; $s5: $main-col-width-sm;  
+  @include responsive-prop('min-width', $s1, $s2, $s3, $s4, $s5);
+}
+%cover-text-child{
+  .o-typo__title--cover{
+    $s1: 500px; $s2: 380px; $s3: 300px; $s4: $main-col-width-md-sm; $s5: $main-col-width-sm; 
+    @include responsive-prop('max-width', $s1, $s2, $s3, $s4, $s5);
+  }
+
+  .o-typo__paragraph--cover{
+    $s1: 400px; $s2: 300px; $s3: 250px; $s4: $main-col-width-md-sm; $s5: $main-col-width-sm; 
+    @include responsive-prop('max-width', $s1, $s2, $s3, $s4, $s5);
+
+  }
+}
+%cover-text-child-skin{
+  .o-typo__title--cover{
+    color: $color-brand-2;
+  }
+
+  .o-typo__paragraph--cover{
+    color: $color-brand-1;
+    letter-spacing: 1px;
+  }
+  
+  .o-cover__divider{
+    color: $color-brand-4;
+    font-size: 2rem;
+  }
+
+  .o-cover__date{
+    color: $color-brand-3;
+
+    @include typography-generator($face-sans, 400, 12px, 12px, 12px, 12px, 12px, 1.6);
+  }
+
+  .o-cover__category-list a{
+    text-decoration: underline;
+
+    &:hover{
+      text-decoration: none
+    }
+
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
+}
+
+
+
+/***********
+** RENDER **
+***********/ 
+
+.o-cover--split{
+  .o-cover__img{
+    @include extend-array("cover-img-", "layout");
+  }
+  .o-cover__text{
+    @include extend-array("cover-text-", "layout", "child", "child-skin");
+  }
+}

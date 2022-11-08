@@ -1,0 +1,28 @@
+/*
+  OBJECTS => typography
+*/
+
+
+// PARAGRAPH
+.o-typo__paragraph--cover, %paragraph-cover{
+  @include typography-generator($face-sans, 400, 14px, 12px, 12px, 12px, 12px, 1.6);
+}
+
+%paragraph-post{
+  @include typography-generator($face-sans, 400, 20px, 18px, 18px, 14px, 20px, 1.6);
+}
+
+
+
+// TITLE
+.o-typo__title--cover, %title-cover{
+  @include typography-generator($face-serif, 700, 40px, 25px, 20px, 25px, 25px, 1.2);
+}
+
+%title-post-h2{
+  @include typography-generator($face-sans, 700, 25px, 22px, 22px, 18px, 25px, 1.6);
+}
+
+%title-post-h3{
+  @include typography-generator($face-sans, 700, 21px, 18px, 18px, 14px, 20px, 1.6);
+}

@@ -1,0 +1,21 @@
+///* ========================================================================
+//   #FONTS
+//   ======================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@100;400;900&display=swap');
+
+// Set font family placeholder
+$face-playfair: 'Playfair Display';
+$face-roboto: 'Roboto';
+
+%font-serif{font-family: $face-playfair, serif;}
+%font-sans{font-family: $face-roboto, sans-serif;}
+
+// !! CAUTION TO EDIT NAMESPACE !!
+$font-face-1: $face-playfair;
+$font-serif: $face-playfair; $face-serif: $face-playfair;
+%assign-font-face-1{ @extend %font-serif; }
+
+$font-face-2: $face-roboto;
+$font-sans: $face-roboto; $face-sans: $face-roboto;
+%assign-font-face-2{ @extend %font-sans; }

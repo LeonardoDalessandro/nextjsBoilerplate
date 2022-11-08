@@ -1,0 +1,57 @@
+/*
+  OBJECTS => CARDS
+*/
+%footer-tag-layout{
+  $p1: 50px; $p2: 50px; $p3: 50px; $p4: 50px; $p5: 50px; 
+  @include responsive-prop('padding-top', $p1, $p2, $p3, $p4, $p5);
+  @include responsive-prop('padding-bottom', $p1, $p2, $p3, $p4, $p5);
+  @include responsive-prop('margin-bottom', $p1, $p2, $p3, $p4, $p5);
+
+  min-width: 100%;
+}
+
+%footer-tag-skin{
+  $c: $color-brand-5; $s: 1px;
+  border-top: $s solid $c;
+  border-bottom: $s solid $c;
+}
+
+
+/***********
+** RENDER **
+***********/ 
+.o-layout__text{
+  color: $color-brand-2;
+
+  p{
+    @extend %paragraph-post;
+    $m1: 60px; $m2: 50px; $m3: 40px; $m4: 40px; $m5: 40px; 
+    @include responsive-prop('margin-bottom', $m1, $m2, $m3, $m4, $m5);
+  }
+
+  h2{
+    @extend %title-post-h2;
+    $m1: 40px; $m2: 25px; $m3: 20px; $m4: 15px; $m5: 15px; 
+    @include responsive-prop('margin-bottom', $m1, $m2, $m3, $m4, $m5);
+    text-transform: uppercase;
+  }
+
+  h3{
+    @extend %title-post-h3;
+    $m1: 20px; $m2: 10px; $m3: 10px; $m4: 10px; $m5: 10px; 
+    @include responsive-prop('margin-bottom', $m1, $m2, $m3, $m4, $m5);
+  }
+
+  a{
+    text-decoration: underline;
+    color: $color-brand-4;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.o-footer__tags{
+  @include extend-array("footer-tag-", "layout", "skin");
+}

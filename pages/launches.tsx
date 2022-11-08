@@ -1,15 +1,46 @@
-import type { ReactElement } from "react";
-import Layout from "../components/templates/public.main";
+import { ReactElement, useEffect, useState } from "react";
+import type { GetStaticProps } from "next";
 import type { NextPageWithLayout } from "./_app";
+
+import Layout from "../components/templates/public.main";
 
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
+import { getLaunches } from "../services/launches";
 
 const Page: NextPageWithLayout = () => {
+  const [launches, setLaunches] = useState([]);
+  const [filter, setFilter] = useState("all");
+
+  useEffect(() => {
+    async function setData() {
+      const launchList = await getLaunches();
+
+      if (launchList.length === 0) return;
+
+      if (filter === "all") {
+        setLaunches(launchList);
+        return;
+      }
+
+      if (filter === "fail") {
+        setLaunches(launchList.filter((launch) => launch.success === false));
+        return;
+      }
+
+      if (filter === "success") {
+        setLaunches(launchList.filter((launch) => launch.success === true));
+        return;
+      }
+    }
+
+    setData();
+  }, [filter]);
+
   return (
     <>
       <h1 className={styles.title}>
-        Welcome to <a href="https://nextjs.org">Next.js!</a>
+        Welcome to <a href="https://nextjs.org">ABOUT PAGE</a>
       </h1>
 
       <p className={styles.description}>
@@ -18,7 +49,7 @@ const Page: NextPageWithLayout = () => {
       </p>
 
       <div className={styles.grid}>
-        <a href="/about" id="about" className={styles.card}>
+        <a href="https://nextjs.org/docs" className={styles.card}>
           <h2>Documentation &rarr;</h2>
           <p>Find in-depth information about Next.js features and API.</p>
         </a>
@@ -46,6 +77,26 @@ const Page: NextPageWithLayout = () => {
           <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
         </a>
       </div>
+
+      <ul>
+        {launches.map((launch) => {
+          return (
+            <li key={launch.id}>
+              {launch.name} - {launch.date} - {`${launch.success}`}
+            </li>
+          );
+        })}
+      </ul>
+
+      <button type="button" onClick={() => setFilter("all")}>
+        Select all
+      </button>
+      <button type="button" onClick={() => setFilter("success")}>
+        Select all success === true
+      </button>
+      <button type="button" onClick={() => setFilter("fail")}>
+        Select all success === false
+      </button>
     </>
   );
 };

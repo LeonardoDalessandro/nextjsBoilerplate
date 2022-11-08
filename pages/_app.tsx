@@ -6,6 +6,13 @@ import type { AppProps } from "next/app";
 
 import ErrorBoundary from "../next.config.errorHandler";
 
+// import { makeServer } from "../server/index";
+
+// if (process.env.NODE_ENV === "development") {
+//   console.log("[System][mock server]: started");
+//   makeServer({ environment: "development" });
+// }
+
 export function reportWebVitals(metric) {
   console.log("[System][monitoring][CVW]: ", metric);
 }
